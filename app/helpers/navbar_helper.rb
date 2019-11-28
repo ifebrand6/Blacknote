@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module NavbarHelper
   # Generate <li><a href=...></a></li> appropriate for the Bootstrap navbar.
   # If :active_when hash is provided in the options, a class=active will
@@ -10,8 +12,8 @@ module NavbarHelper
   #           root_path,
   #           active_when: { controller: "home" }) %>
   #
-  def navbar_link_to(label, path, options={})
-    active_when = options.delete(:active_when) { Hash.new }
+  def navbar_link_to(label, path, options = {})
+    active_when = options.delete(:active_when) { {} }
     active = active_when.all? do |key, value|
       case value
       when Regexp
@@ -21,7 +23,7 @@ module NavbarHelper
       end
     end
 
-    content_tag(:li, class: ("active" if active)) do
+    content_tag(:li, class: ('active' if active)) do
       link_to(label, path, options)
     end
   end

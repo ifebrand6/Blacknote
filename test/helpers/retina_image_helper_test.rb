@@ -1,10 +1,12 @@
-require "test_helper"
+# frozen_string_literal: true
+
+require 'test_helper'
 
 class RetinaImageHelperTest < ActionView::TestCase
   include RetinaImageHelper
 
-  test "retina_image_tag" do
-    tag = retina_image_tag("example.png", alt: "example")
+  test 'retina_image_tag' do
+    tag = retina_image_tag('example.png', alt: 'example')
 
     assert_match(%r{\A<img srcset=".*" alt=".*" src=".*" />\z}, tag)
     assert_match(/alt="example"/, tag)

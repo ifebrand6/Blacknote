@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 # This has to come first
-require_relative "./support/rails"
+require_relative './support/rails'
 
 # Load everything else from test/support
-Dir[File.expand_path("../support/**/*.rb", __FILE__)].each { |rb| require(rb) }
+Dir[File.expand_path('support/**/*.rb', __dir__)].each { |rb| require(rb) }
