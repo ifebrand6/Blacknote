@@ -23,6 +23,7 @@ gem 'redis', '~> 4.0'
 gem 'sass-rails', '~> 6.0'
 gem 'sidekiq', '>= 4.2.0'
 gem 'turbolinks', '~> 5'
+gem 'devise'
 # gem "webpacker"
 
 group :production do
