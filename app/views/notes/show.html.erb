@@ -1,0 +1,21 @@
+<% provide(:title) do %>
+  Note #<%= @note.id %>
+<% end %>
+
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <th class="col-sm-2">Title</th>
+      <td><%= @note.title %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Content</th>
+      <td><%= @note.content %></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  <%= link_to "Edit", edit_note_path(@note), class: "btn btn-primary" %>
+  <%= link_to "Back", notes_path, class: "btn btn-link" %>
+</p>

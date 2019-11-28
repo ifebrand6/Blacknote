@@ -1,0 +1,11 @@
+<%= bootstrap_form_for(@note) do |f| %>
+
+  <%= f.alert_message "Please review the problems below:" %>
+
+  <%= f.text_field :title %>
+  <%= f.text_area :content, rows: 5 %>
+
+  <%= f.primary %>
+  <%= link_to "Back", notes_path, class: "btn btn-link" %>
+
+<% end %>
