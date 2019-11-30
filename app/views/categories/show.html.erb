@@ -1,0 +1,17 @@
+<% provide(:title) do %>
+  Category #<%= @category.id %>
+<% end %>
+
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <th class="col-sm-2">Name</th>
+      <td><%= @category.name %></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  <%= link_to "Edit", edit_category_path(@category), class: "btn btn-primary" %>
+  <%= link_to "Back", categories_path, class: "btn btn-link" %>
+</p>
