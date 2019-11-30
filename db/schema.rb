@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_30_181034) do
+ActiveRecord::Schema.define(version: 2019_11_30_205454) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,9 +19,7 @@ ActiveRecord::Schema.define(version: 2019_11_30_181034) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "note_id"
     t.index ["name"], name: "index_categories_on_name"
-    t.index ["note_id"], name: "index_categories_on_note_id"
   end
 
   create_table "notes", force: :cascade do |t|
@@ -30,8 +28,6 @@ ActiveRecord::Schema.define(version: 2019_11_30_181034) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.bigint "tag_id"
-    t.index ["tag_id"], name: "index_notes_on_tag_id"
     t.index ["user_id"], name: "index_notes_on_user_id"
   end
 
@@ -54,7 +50,5 @@ ActiveRecord::Schema.define(version: 2019_11_30_181034) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "categories", "notes"
-  add_foreign_key "notes", "tags"
   add_foreign_key "notes", "users"
 end
