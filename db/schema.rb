@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_30_180436) do
+ActiveRecord::Schema.define(version: 2019_11_30_181034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 2019_11_30_180436) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.bigint "tag_id"
+    t.index ["tag_id"], name: "index_notes_on_tag_id"
     t.index ["user_id"], name: "index_notes_on_user_id"
   end
 
@@ -53,5 +55,6 @@ ActiveRecord::Schema.define(version: 2019_11_30_180436) do
   end
 
   add_foreign_key "categories", "notes"
+  add_foreign_key "notes", "tags"
   add_foreign_key "notes", "users"
 end
