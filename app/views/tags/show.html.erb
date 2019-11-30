@@ -1,0 +1,17 @@
+<% provide(:title) do %>
+  Tag #<%= @tag.id %>
+<% end %>
+
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <th class="col-sm-2">Keyword</th>
+      <td><%= @tag.keyword %></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  <%= link_to "Edit", edit_tag_path(@tag), class: "btn btn-primary" %>
+  <%= link_to "Back", tags_path, class: "btn btn-link" %>
+</p>
