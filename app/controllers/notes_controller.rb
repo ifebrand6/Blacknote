@@ -2,10 +2,11 @@
 
 class NotesController < ApplicationController
   before_action :set_note, only: %i[show edit update destroy]
+  before_action :authenticate_user!
 
   # GET /notes
   def index
-    @notes = Note.all
+    @notes = current_user.notes.all
   end
 
   # GET /notes/1
@@ -13,7 +14,7 @@ class NotesController < ApplicationController
 
   # GET /notes/new
   def new
-    @note = Note.new
+    @note = current_user.notes.new
   end
 
   # GET /notes/1/edit
@@ -21,7 +22,7 @@ class NotesController < ApplicationController
 
   # POST /notes
   def create
-    @note = Note.new(note_params)
+    @note = current_user.notes.new(note_params)
 
     if @note.save
       redirect_to @note, notice: 'Note was successfully created.'
@@ -49,7 +50,7 @@ class NotesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_note
-    @note = Note.find(params[:id])
+    @note = current_user.notes.find(params[:id])
   end
 
   # Only allow a trusted parameter "white list" through.
