@@ -23,7 +23,17 @@
           <li><%= link_to "Login", new_user_session_path  %></li>
         <% end %>
        
-        <li><a href="#">Help</a></li>
+        <li>
+          <%= form_tag(search_note_path, :method => "get",   
+              class: 'navbar-form navbar-left') do %>  
+            <div class="input-group">  
+              <%= search_field_tag :search, params[:search], placeholder: "Search", class: "form-control" %>  
+              <div class="input-group-btn">  
+                <%= button_tag "", :class => 'btn btn-info glyphicon glyphicon-search',:name => nil%>  
+              </div>  
+            </div>  
+          <% end %>
+        </li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>

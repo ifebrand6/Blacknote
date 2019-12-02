@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   get 'notes/recent'
   get 'notes/test'
-  get 'notes/good'
+  get '/search' => 'notes#search', :as => 'search_note'
   resources :tags
   resources :categories
   devise_for :users

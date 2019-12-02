@@ -6,25 +6,17 @@ class NotesController < ApplicationController
   
 
   # GET /notes
-  # def index
-  #   # if 
-  #   params[:recent] = true
-  #   #   @notes = current_user.notes.recent  
-  #   # else
-  #     @notes = current_user.notes.all
-  #   # end
-   
-  # end
-
-  # search features
   def index
-    if params[:title]
-      @notes = Note.where('title LIKE?', "%#{params[:title]}")
-      # @notes = Note.where("title = ? AND content = ?", params[:title], params[:content])
+    if 
+    params[:recent].present?
+      redirect_to action: "recent"
     else
-      @notes = Note.all 
+      @notes = current_user.notes.all
     end
+   
   end
+
+  
 
   # GET /notes/1
   def show; end 
@@ -74,6 +66,16 @@ class NotesController < ApplicationController
   def test
     
   end
+  def search
+    if params[:search].blank?
+      #this should be redirected to the notes/index
+      redirect_to(root_path, alert: "Empty field!") and return
+    else
+      @parameter = params[:search].downcase  
+      @results = Note.all.where("lower(content) LIKE :search", search: "%#{@parameter}%") 
+    end
+  end
+
 
   private
 
