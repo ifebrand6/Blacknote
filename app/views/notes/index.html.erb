@@ -8,7 +8,22 @@
       <th></th>
     </tr>
   </thead>
-
+    <p>
+      <%= form_tag(notes_path, method: :get) do %>
+        Keyword <%= text_field_tag :title, params[:title] %>
+        <%= submit_tag 'Search', name: nil %>
+      <% end %>
+    </p>
+  <div class="dropdown">
+    <li class="nav-item">
+      <%= link_to "Recent", {recent: params[:recent]} %>
+      <%= link_to "Recent", notes_recent_path(:recent => 'true') %>
+      <p>
+      <%= link_to "Comment wall", notes_test_path(@red, :anchor => "wall") %>
+      </p>
+    </li>
+  </div>
+     
   <tbody>
     <% @notes.each do |note| %>
       <tr>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_30_205454) do
+ActiveRecord::Schema.define(version: 2019_12_02_120508) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,12 +22,23 @@ ActiveRecord::Schema.define(version: 2019_11_30_205454) do
     t.index ["name"], name: "index_categories_on_name"
   end
 
+  create_table "labels", force: :cascade do |t|
+    t.bigint "note_id"
+    t.bigint "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["note_id"], name: "index_labels_on_note_id"
+    t.index ["tag_id"], name: "index_labels_on_tag_id"
+  end
+
   create_table "notes", force: :cascade do |t|
     t.string "title"
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_notes_on_category_id"
     t.index ["user_id"], name: "index_notes_on_user_id"
   end
 
@@ -50,5 +61,8 @@ ActiveRecord::Schema.define(version: 2019_11_30_205454) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "labels", "notes"
+  add_foreign_key "labels", "tags"
+  add_foreign_key "notes", "categories"
   add_foreign_key "notes", "users"
 end

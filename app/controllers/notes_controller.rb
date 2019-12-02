@@ -1,16 +1,33 @@
 # frozen_string_literal: true
 
 class NotesController < ApplicationController
-  before_action :set_note, only: %i[show edit update destroy]
+  before_action :set_note, only: %i[show edit update destroy ]
   before_action :authenticate_user!
+  
 
   # GET /notes
+  # def index
+  #   # if 
+  #   params[:recent] = true
+  #   #   @notes = current_user.notes.recent  
+  #   # else
+  #     @notes = current_user.notes.all
+  #   # end
+   
+  # end
+
+  # search features
   def index
-    @notes = current_user.notes.all
+    if params[:title]
+      @notes = Note.where('title LIKE?', "%#{params[:title]}")
+      # @notes = Note.where("title = ? AND content = ?", params[:title], params[:content])
+    else
+      @notes = Note.all 
+    end
   end
 
   # GET /notes/1
-  def show; end
+  def show; end 
 
   # GET /notes/new
   def new
@@ -46,6 +63,18 @@ class NotesController < ApplicationController
     redirect_to notes_url, notice: 'Note was successfully destroyed.'
   end
 
+  #GET /notes
+  def recent
+    # if params[:recent] = true
+    #   @notes = current_user.notes.recent  
+    # else
+      @notes = current_user.notes.recent
+    # end
+  end
+  def test
+    
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -55,6 +84,6 @@ class NotesController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def note_params
-    params.require(:note).permit(:title, :content)
+    params.require(:note).permit(:title, :content, :category_id)
   end
 end
