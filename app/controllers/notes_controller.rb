@@ -6,14 +6,14 @@ class NotesController < ApplicationController
   
 
   # GET /notes
+  # try another
   def index
     if 
     params[:recent].present?
-      redirect_to action: "recent"
+      @notes = current_user.notes.recent
     else
       @notes = current_user.notes.all
     end
-   
   end
 
   
@@ -56,13 +56,13 @@ class NotesController < ApplicationController
   end
 
   #GET /notes
-  def recent
-    # if params[:recent] = true
-    #   @notes = current_user.notes.recent  
-    # else
-      @notes = current_user.notes.recent
-    # end
-  end
+  # def recent
+  #   # if params[:recent] = true
+  #   #   @notes = current_user.notes.recent  
+  #   # else
+  #     @notes = current_user.notes.recent
+  #   # end
+  # end
   def test
     
   end

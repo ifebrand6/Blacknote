@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'notes/recent'
   get 'notes/test'
   get '/search' => 'notes#search', :as => 'search_note'
   resources :tags

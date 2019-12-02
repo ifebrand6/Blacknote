@@ -10,11 +10,7 @@
   </thead>
   <div class="dropdown">
     <li class="nav-item">
-      <%= link_to "Recent", notes_recent_path %>
-      <%= link_to "Recent", {recent: params[:recent]} %>
-      <p>
-      <%= link_to "Comment wall", notes_test_path(@red, :anchor => "wall") %>
-      </p>
+      <%= link_to "Recent", notes_path(recent: true) %>
     </li>
   </div>
      
