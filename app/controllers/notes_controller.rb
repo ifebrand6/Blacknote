@@ -3,6 +3,7 @@
 class NotesController < ApplicationController
   before_action :set_note, only: %i[show edit update destroy ]
   before_action :authenticate_user!
+  # before_action :catergory_fill
   
 
   # GET /notes
@@ -24,6 +25,7 @@ class NotesController < ApplicationController
   # GET /notes/new
   def new
     @note = current_user.notes.new
+    @category = Category.order('id ASC')
   end
 
   # GET /notes/1/edit
@@ -80,6 +82,9 @@ class NotesController < ApplicationController
   private
 
   # Use callbacks to share common setup or constraints between actions.
+  # def catergory_fill
+  #   @category = Category.all
+  # end
   def set_note
     @note = current_user.notes.find(params[:id])
   end

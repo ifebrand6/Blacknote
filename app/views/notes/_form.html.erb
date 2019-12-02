@@ -4,7 +4,7 @@
 
   <%= f.text_field :title %>
   <%= f.text_area :content, rows: 5 %>
-
+  <%= f.select(:category_id, @category.map {|c| [c.name, c.id]})%>
   <%= f.primary %>
   <%= link_to "Back", notes_path, class: "btn btn-link" %>
 
