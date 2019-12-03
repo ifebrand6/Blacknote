@@ -13,9 +13,9 @@ class NotesController < ApplicationController
   def index
     if 
     params[:recent].present?
-      @notes = current_user.notes.recent
+      @notes = current_user.@category.notes.recent
     else
-      @notes = current_user.notes.all
+      @notes = current_user.@category.notes.all
     end
   end
 
@@ -26,7 +26,7 @@ class NotesController < ApplicationController
 
   # GET /notes/new
   def new
-    @note = current_user.notes.new
+    @note = current_user.@category.notes.new
     @category = Category.order('id ASC')
   end
 
@@ -37,7 +37,7 @@ class NotesController < ApplicationController
 
   # POST /notes
   def create
-    @note = current_user.notes.new(note_params)
+    @note = current_user.@category.notes.new(note_params)
 
     if @note.save
       redirect_to @note, notice: 'Note was successfully created.'
@@ -59,7 +59,7 @@ class NotesController < ApplicationController
 
   # DELETE /notes/1
   def destroy
-    @note = current_user.notes.find(params[:id])
+    @note = current_user.@category.notes.find(params[:id])
     if @note.destroy
       redirect_to notes_url, notice: 'Note was successfully destroyed.'
     else
@@ -71,9 +71,9 @@ class NotesController < ApplicationController
   #GET /notes
   # def recent
   #   # if params[:recent] = true
-  #   #   @notes = current_user.notes.recent  
+  #   #   @notes = current_user.@category.notes.recent  
   #   # else
-  #     @notes = current_user.notes.recent
+  #     @notes = current_user.@category.notes.recent
   #   # end
   # end
   def test
@@ -93,7 +93,7 @@ class NotesController < ApplicationController
     @notes = tag.notes
   end
   def tags
-    @notes = current_user.notes.all
+    @notes = current_user.@category.notes.all
   end
 
 
@@ -105,7 +105,7 @@ class NotesController < ApplicationController
     @category = Category.find(params[:id])
   end
   def set_note
-    @note = current_user.notes.find(params[:id])
+    @note = current_user.@category.notes.find(params[:id])
   end
 
   # Only allow a trusted parameter "white list" through.
