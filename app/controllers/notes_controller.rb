@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 class NotesController < ApplicationController
+  before_action :get_category
   before_action :set_note, only: %i[show edit update destroy ]
   before_action :authenticate_user!
+  
   # before_action :catergory_fill
   
 
@@ -57,8 +59,13 @@ class NotesController < ApplicationController
 
   # DELETE /notes/1
   def destroy
-    @note.destroy
-    redirect_to notes_url, notice: 'Note was successfully destroyed.'
+    @note = current_user.notes.find(params[:id])
+    if @note.destroy
+      redirect_to notes_url, notice: 'Note was successfully destroyed.'
+    else
+      redirect_to notes-path, notice: 'Note failed to delete.'
+    end
+    
   end
 
   #GET /notes
@@ -85,21 +92,24 @@ class NotesController < ApplicationController
     tag = Tag.find_by(keyword: params[:keyword])
     @notes = tag.notes
   end
+  def tags
+    @notes = current_user.notes.all
+  end
 
 
 
   private
 
   # Use callbacks to share common setup or constraints between actions.
-  # def catergory_fill
-  #   @category = Category.all
-  # end
+  def get_category
+    @category = Category.find(params[:id])
+  end
   def set_note
     @note = current_user.notes.find(params[:id])
   end
 
   # Only allow a trusted parameter "white list" through.
   def note_params
-    params.require(:note).permit(:title, :content, :category_id)
+    params.require(:note).permit(:title, :content, :category_id,:note)
   end
 end

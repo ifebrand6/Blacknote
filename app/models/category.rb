@@ -1,3 +1,3 @@
 class Category < ApplicationRecord
-    has_many :notes, class_name: "note", foreign_key: "reference_id"
+    has_many :notes, class_name: "note", dependent: :destroy
 end
