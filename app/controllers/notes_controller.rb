@@ -29,7 +29,9 @@ class NotesController < ApplicationController
   end
 
   # GET /notes/1/edit
-  def edit; end
+  def edit
+    @category = Category.order('id DESC')
+  end
 
   # POST /notes
   def create
@@ -38,6 +40,7 @@ class NotesController < ApplicationController
     if @note.save
       redirect_to @note, notice: 'Note was successfully created.'
     else
+      @category = Category.order('id DESC')
       render :new
     end
   end
@@ -47,6 +50,7 @@ class NotesController < ApplicationController
     if @note.update(note_params)
       redirect_to @note, notice: 'Note was successfully updated.'
     else
+      @category = Category.order('id ASC')
       render :edit
     end
   end
@@ -77,6 +81,11 @@ class NotesController < ApplicationController
       @results = Note.all.where("lower(content) LIKE :search", search: "%#{@parameter}%") 
     end
   end
+  def hashtags
+    tag = Tag.find_by(keyword: params[:keyword])
+    @notes = tag.notes
+  end
+
 
 
   private

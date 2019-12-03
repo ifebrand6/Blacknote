@@ -1,43 +1,43 @@
 <% provide(:title, "Listing notes") %>
 
 <table class="table table-striped">
-  <thead>
+<thead>
     <tr>
-      <th>Title</th>
-      <th>Content</th>
-      <th></th>
+    <th>Title</th>
+    <th>Content</th>
+    <th></th>
     </tr>
-  </thead>
-  <div class="dropdown">
+</thead>
+<div class="dropdown">
     <li class="nav-item">
-      <%= link_to "Recent", notes_path(recent: true) %>
+    <%= link_to "Recent", notes_path(recent: true) %>
     </li>
-  </div>
+</div>
      
-  <tbody>
+<tbody>
     <% @notes.each do |note| %>
-      <tr>
+    <tr>
         <td><%= note.title %></td>
         <td><%= render_with_hashtags(note.content) %></td>
         <td>
-          <div class="btn-group">
+        <div class="btn-group">
             <%= link_to note, class: "btn btn-xs btn-default" do %>
-              <%= fa_icon("eye", text: "Show") %>
+            <%= fa_icon("eye", text: "Show") %>
             <% end %>
             <%= link_to edit_note_path(note), class: "btn btn-xs btn-default" do %>
-              <%= fa_icon("pencil", text: "Edit") %>
+            <%= fa_icon("pencil", text: "Edit") %>
             <% end %>
             <%= link_to note, class: "btn btn-xs btn-danger", method: :delete, data: { confirm: "Are you sure you want to delete this note?" } do %>
-              <%= fa_icon("trash-o", text: "Destroy") %>
+            <%= fa_icon("trash-o", text: "Destroy") %>
             <% end %>
-          </div>
-      </tr>
+        </div>
+    </tr>
     <% end %>
-  </tbody>
+</tbody>
 </table>
 
 <br>
 
 <%= link_to new_note_path, class: "btn btn-default" do %>
-  <%= fa_icon("plus", text: "New Note") %>
+<%= fa_icon("plus", text: "New Note") %>
 <% end %>
