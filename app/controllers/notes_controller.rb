@@ -15,7 +15,11 @@ class NotesController < ApplicationController
     params[:recent].present?
       @notes = @category.notes.recent
     else
-      @notes = @category.notes.all
+      @notes = Note.all_with_category_details
+      respond_to do |format|
+        format.html
+        format.csv { send_data @notes.as_csv }
+      end
     end
   end
 

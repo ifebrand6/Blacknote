@@ -1,10 +1,11 @@
 # frozen_string_literal: true
+require 'csv'
 
 class Note < ApplicationRecord
     belongs_to :user
     belongs_to :category, :class_name => 'Category'
     has_many :labels, :class_name => 'Label'
-    has_many :tags, through: :labels
+    has_many :tags, through: :labels, dependent: :destroy
     validates :content, length: { minimum: 200}
     # sort the note to most recent
     scope :recent, lambda { order(created_at: :desc)}
@@ -31,4 +32,17 @@ class Note < ApplicationRecord
     
         self.save!
     end
+     #added a method to return Note:active record
+    def self.all_with_category_details
+        Note.select("notes.*, categories.name as category_name, categories.id as category_id").joins(:category)
+    end
+    def self.as_csv
+        CSV.generate do |csv|
+            columns = %w(id title content)
+            csv << columns.map(&:humanize)
+            all_with_category_details.each do |note|
+            csv << note.attributes.values_at(*columns)
+            end
+        end
+        end
 end

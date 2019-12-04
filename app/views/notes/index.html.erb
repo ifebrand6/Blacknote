@@ -44,3 +44,5 @@
 <%= link_to new_category_note_path(@category), class: "btn btn-default" do %>
   <%= fa_icon("plus", text: "New Note") %>
 <% end %>
+
+<%= link_to "Export all notes", category_notes_path(format: :csv) %>

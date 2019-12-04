@@ -181,6 +181,8 @@ GEM
       childprocess (>= 0.6.3, < 4)
       iniparse (~> 1.4)
     parallel (1.19.1)
+    paranoia (2.4.2)
+      activerecord (>= 4.0, < 6.1)
     parser (2.6.5.0)
       ast (~> 2.4.0)
     pg (1.1.4)
@@ -353,6 +355,7 @@ DEPENDENCIES
   minitest-ci (>= 3.3.0)
   mock_redis
   overcommit (>= 0.37.0)
+  paranoia (~> 2.4, >= 2.4.2)
   pg (>= 0.18)
   pgcli-rails
   postmark-rails

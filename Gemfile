@@ -25,6 +25,7 @@ gem 'sass-rails', '~> 6.0'
 gem 'sidekiq', '>= 4.2.0'
 gem 'turbolinks', '~> 5'
 gem 'devise'
+gem 'paranoia', '~> 2.4', '>= 2.4.2'
 # gem "webpacker"
 
 group :production do
