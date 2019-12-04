@@ -1,11 +1,10 @@
-<%= bootstrap_form_for(@note) do |f| %>
+<%= bootstrap_form_with(model: [@category, @note], local: true) do |f| %>
 
   <%= f.alert_message "Please review the problems below:" %>
-
+  
   <%= f.text_field :title %>
   <%= f.text_area :content, rows: 5 %>
-  <%= f.select(:category_id, @category.map {|c| [c.name, c.id]})%>
   <%= f.primary %>
-  <%= link_to "Back", notes_path, class: "btn btn-link" %>
+  <%= link_to "Back",category_notes_path(@category), class: "btn btn-link" %>
 
 <% end %>
