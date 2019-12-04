@@ -1,3 +1,3 @@
 class Category < ApplicationRecord
-    has_many :notes, class_name: "note", dependent: :destroy
+    has_many :notes, dependent: :destroy
 end

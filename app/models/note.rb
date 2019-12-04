@@ -2,7 +2,7 @@
 
 class Note < ApplicationRecord
     belongs_to :user
-    belongs_to :category
+    belongs_to :category, :class_name => 'Category'
     has_many :labels, :class_name => 'Label'
     has_many :tags, through: :labels
     validates :content, length: { minimum: 200}
@@ -25,5 +25,10 @@ class Note < ApplicationRecord
             tag = Tag.find_or_create_by(keyword: hashtag.downcase.delete('#'))
             note.tags << tag
         end
+    end
+    def set_user!(user)
+        self.user_id = user.id
+    
+        self.save!
     end
 end

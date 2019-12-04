@@ -20,7 +20,7 @@ verify_signatures: false
 
 PreCommit:
   BundleCheck:
-    enabled: true
+    enabled: false
 
   FixMe:
     enabled: true
