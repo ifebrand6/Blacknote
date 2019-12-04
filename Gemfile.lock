@@ -66,7 +66,9 @@ GEM
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
       sassc (>= 2.0.0)
-    bootstrap_form (2.7.0)
+    bootstrap_form (4.3.0)
+      actionpack (>= 5.0)
+      activemodel (>= 5.0)
     brakeman (4.7.2)
     builder (3.2.3)
     bundler-audit (0.6.1)
@@ -333,7 +335,7 @@ DEPENDENCIES
   binding_of_caller
   bootsnap
   bootstrap-sass (~> 3.3)
-  bootstrap_form (~> 2.3)
+  bootstrap_form (~> 4.0)
   brakeman
   bundler-audit (>= 0.5.0)
   byebug
