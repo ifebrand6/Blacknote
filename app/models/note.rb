@@ -2,8 +2,9 @@
 require 'csv'
 
 class Note < ApplicationRecord
+    acts_as_paranoid
     belongs_to :user
-    belongs_to :category, :class_name => 'Category'
+    belongs_to :category, -> { with_deleted }, :class_name => 'Category'
     has_many :labels, :class_name => 'Label'
     has_many :tags, through: :labels, dependent: :destroy
     validates :content, length: { minimum: 200}

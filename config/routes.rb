@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get '/search' => 'notes#search', :as => 'search_note'
   get '/notes/hashtag/:keyword', to:'notes#hashtags'
   get 'notes/tags'
+  get '/trash' => 'notes#trash', :as => 'trash'
+  get 'state/:id' => 'notes#state', :as => 'state'
   resources :tags
   devise_for :users
   resources :categories do

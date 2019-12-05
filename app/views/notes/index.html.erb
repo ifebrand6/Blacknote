@@ -30,7 +30,7 @@
             <%= link_to  edit_category_note_path(@category, note), class: "btn btn-xs btn-default" do %>
               <%= fa_icon("pencil", text: "Edit") %>
             <% end %>
-            <%= link_to  [@category, note], class: "btn btn-xs btn-danger", method: :delete, data: { confirm: "Are you sure you want to delete this note?" } do %>
+            <%= link_to  [@category, note,type: :normal], class: "btn btn-xs btn-danger", method: :delete, data: { confirm: "Are you sure you want to delete this note?" } do %>
               <%= fa_icon("trash-o", text: "Destroy") %>
             <% end %>
           </div>
@@ -45,4 +45,5 @@
   <%= fa_icon("plus", text: "New Note") %>
 <% end %>
 
-<%= link_to "Export all notes", category_notes_path(format: :csv) %>
+<%= link_to "Export all notes", category_notes_path(format: :csv) %> |
+<%= link_to "Deleted note", trash_path %>

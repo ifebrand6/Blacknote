@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class NotesController < ApplicationController
-  before_action :get_category
-  before_action :set_note, only: %i[show edit update destroy ]
+  before_action :get_category, except: %i[test trash state]
+  before_action :set_note, only: %i[show edit update destroy]
   before_action :authenticate_user!
   
   # before_action :catergory_fill
@@ -68,7 +68,6 @@ class NotesController < ApplicationController
     else
       redirect_to category_notes_path(@category), notice: 'Note failed to delete.'
     end
-    
   end
 
   def test
@@ -90,8 +89,27 @@ class NotesController < ApplicationController
   def tags
     @notes = @category.notes.all
   end
+  def trash
+    @notes = Note.only_deleted
+  end
 
-
+  # data state- recover or destroy and object in the database
+  def state
+    @note = Note.unscoped.find(params[:id])
+    if params[:type] == 'recover'
+      if @note.restore
+        redirect_to trash_path, notice: 'Note have been restored.'
+      else
+        redirect_ to trash_path, notice: 'Application could note remove this note.'
+      end
+    elsif params[:type] == 'forever' 
+      if @note.really_destroy!
+        redirect_to trash_path, notice: 'Note have been destroyed.'
+      else
+        redirect_ to trash_path, notice: 'Application could note remove this note.'
+      end
+    end
+  end
 
   private
 
