@@ -10,6 +10,8 @@ class Note < ApplicationRecord
     validates :content, length: { minimum: 200}
     # sort the note to most recent
     scope :recent, lambda { order(created_at: :desc)}
+    scope :most_recent, lambda { order(:title => DESC)}
+    # Ex:- scope :active, lambda {where(:active => true)}
 
     after_create do
         note = Note.find_by(id: self.id)
@@ -33,7 +35,7 @@ class Note < ApplicationRecord
     
         self.save!
     end
-     #added a method to return Note:active record
+     #added a method to return Note:active record for exporting notes to files
     def self.all_with_category_details
         Note.select("notes.*, categories.name as category_name, categories.id as category_id").joins(:category)
     end
@@ -45,5 +47,12 @@ class Note < ApplicationRecord
             csv << note.attributes.values_at(*columns)
             end
         end
-        end
+    end
+
+    #added method for search 
+    def self.search(search)
+        where("lower(categories.name) LIKE :search OR lower(notes.content) LIKE :search OR lower(notes.title) LIKE :search", search: "%#{search.downcase}%").uniq 
+    end
+
+
 end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class NotesController < ApplicationController
-  before_action :get_category, except: %i[test trash state]
+  before_action :get_category, except: %i[test trash state search tags]
   before_action :set_note, only: %i[show edit update destroy]
   before_action :authenticate_user!
   
@@ -74,12 +74,14 @@ class NotesController < ApplicationController
     
   end
   def search
+    @category = Category.where(:id => 1)
     if params[:search].blank?
       #this should be redirected to the notes/index
       redirect_to(root_path, alert: "Empty field!") and return
     else
-      @parameter = params[:search].downcase  
-      @results = Note.all.where("lower(content) LIKE :search", search: "%#{@parameter}%") 
+      # @parameter = params[:search].downcase  
+      # @results = Note.all.where("lower(content) LIKE :search", search: "%#{@parameter}%") 
+      @results = Note.joins(:category).search(params[:search])
     end
   end
   def hashtags
@@ -109,6 +111,8 @@ class NotesController < ApplicationController
         redirect_ to trash_path, notice: 'Application could note remove this note.'
       end
     end
+    
+   
   end
 
   private

@@ -26,6 +26,7 @@ gem 'sidekiq', '>= 4.2.0'
 gem 'turbolinks', '~> 5'
 gem 'devise'
 gem 'paranoia', '~> 2.4', '>= 2.4.2'
+gem 'shareable'
 # gem "webpacker"
 
 group :production do
