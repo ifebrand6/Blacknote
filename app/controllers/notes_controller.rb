@@ -30,13 +30,13 @@ class NotesController < ApplicationController
 
   # GET /notes/new
   def new
-    current_user
     @note = @category.notes.build
-  
+    @location = request.location
   end
 
   # GET /notes/1/edit
   def edit
+    @location = request.location
   end
 
   # POST /notes
@@ -44,7 +44,6 @@ class NotesController < ApplicationController
     # @user = current_user
     @note = @category.notes.build(note_params)
     @note.set_user!(current_user)
-    
     if @note.save
       redirect_to category_notes_path(@category), notice: 'Note was successfully created.'
     else  
@@ -125,9 +124,14 @@ class NotesController < ApplicationController
   def set_note
     @note = @category.notes.find(params[:id])
   end
+  
+  def load_location
+    @location = request.location
+  end
+  
 
   # Only allow a trusted parameter "white list" through.
   def note_params
-    params.require(:note).permit(:title, :content,:category_id)
+    params.require(:note).permit(:title, :content,:category_id,:address)
   end
 end

@@ -61,9 +61,9 @@ class Note < ApplicationRecord
     # def address
     #     request.location.address
     # end
-    def get_location
-        @city = request.location.ip
-    end
+    # def get_location
+    #     @city = request.location
+    # end
     
 
 end
