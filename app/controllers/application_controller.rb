@@ -2,4 +2,5 @@
 
 class ApplicationController < ActionController::Base
     # before_action :authenticate_user!
+    # @city = request.location.city
 end

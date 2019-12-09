@@ -27,6 +27,7 @@ gem 'turbolinks', '~> 5'
 gem 'devise'
 gem 'paranoia', '~> 2.4', '>= 2.4.2'
 gem 'shareable'
+gem 'geocoder'
 # gem "webpacker"
 
 group :production do

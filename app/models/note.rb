@@ -13,6 +13,9 @@ class Note < ApplicationRecord
     scope :most_recent, lambda { order(:title => DESC)}
     # Ex:- scope :active, lambda {where(:active => true)}
 
+    # reverse_geocoded_by :latitude, :longitude
+    # after_validation :reverse_geocode
+
     after_create do
         note = Note.find_by(id: self.id)
         hashtags = self.content.scan(/#\w+/)
@@ -53,6 +56,14 @@ class Note < ApplicationRecord
     def self.search(search)
         where("lower(categories.name) LIKE :search OR lower(notes.content) LIKE :search OR lower(notes.title) LIKE :search", search: "%#{search.downcase}%").uniq 
     end
-
+    
+    #added method for location finding
+    # def address
+    #     request.location.address
+    # end
+    def get_location
+        @city = request.location.ip
+    end
+    
 
 end
