@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class NotesController < ApplicationController
+  layout 'react'
   before_action :get_category, except: %i[test trash state search tags]
   before_action :set_note, only: %i[show edit update destroy]
   before_action :authenticate_user!
