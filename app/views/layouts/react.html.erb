@@ -133,8 +133,12 @@
         <li class="float-right">            
             <a href="javascript:void(0);" class="fullscreen hidden-md-down hidden-sm-down" data-provide="fullscreen"><i class="zmdi zmdi-fullscreen"></i></a>            
             <a href="javascript:void(0);" class="js-right-sidebar"><i class="zmdi zmdi-settings"></i></a>
-            <a href="profile.html" class="btn_overlay "><i class="zmdi zmdi-account-circle"></i></a>
-            <a href="sign-in.html" class="mega-menu"><i class="zmdi zmdi-power"></i></a>
+            <%= link_to  edit_user_registration_path, :class => "mega-menu" do %>
+            <i class="zmdi zmdi-account-circle"></i>
+            <%end%>
+            <%= link_to  destroy_user_session_path, :method => :delete , :class => "mega-menu" do %>
+            <i class="zmdi zmdi-power"></i>
+            <%end%>
         </li>        
     </ul>
 </nav>
