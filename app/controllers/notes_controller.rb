@@ -5,14 +5,15 @@ class NotesController < ApplicationController
   before_action :get_category, except: %i[test trash state search tags]
   before_action :set_note, only: %i[show edit update destroy]
   before_action :authenticate_user!
-  
+
   # before_action :catergory_fill
-  
 
   # GET /notes
   # try another
+
   def index
-    if 
+    @tags = Tag.all
+    if
     params[:recent].present?
       @notes = @category.notes.recent
     else
@@ -24,10 +25,13 @@ class NotesController < ApplicationController
     end
   end
 
-  
-
   # GET /notes/1
-  def show; end 
+  def show
+    respond_to do |format|
+      format.html
+      format.csv { send_data @note.as_pdf }
+    end
+  end
 
   # GET /notes/new
   def new
@@ -43,11 +47,13 @@ class NotesController < ApplicationController
   # POST /notes
   def create
     # @user = current_user
+    @location = request.location
     @note = @category.notes.build(note_params)
     @note.set_user!(current_user)
     if @note.save
       redirect_to category_notes_path(@category), notice: 'Note was successfully created.'
-    else  
+    else
+      flash[:errors] = @note.errors.full_messages
       render :new
     end
   end
@@ -57,6 +63,7 @@ class NotesController < ApplicationController
     if @note.update(note_params)
       redirect_to category_note_path(@category), notice: 'Note was successfully updated.'
     else
+      flash[:errors] = @note.errors.full_messages
       render :edit
     end
   end
@@ -70,28 +77,33 @@ class NotesController < ApplicationController
     end
   end
 
-  def test
-    
-  end
+  def test; end
+
   def search
-    @category = Category.where(:id => 1)
+    @category = Category.where(id: 1)
     if params[:search].blank?
-      #this should be redirected to the notes/index
-      redirect_to(root_path, alert: "Empty field!") and return
+      # this should be redirected to the notes/index
+      redirect_to(root_path, alert: 'Empty field!') && return
     else
-      # @parameter = params[:search].downcase  
-      # @results = Note.all.where("lower(content) LIKE :search", search: "%#{@parameter}%") 
+      # @parameter = params[:search].downcase
+      # @results = Note.all.where("lower(content) LIKE :search", search: "%#{@parameter}%")
       @results = Note.joins(:category).search(params[:search])
     end
   end
+
   def hashtags
     tag = Tag.find_by(keyword: params[:keyword])
     @notes = tag.notes
   end
+
   def tags
-    @notes = @category.notes.all
+    @category = Category.unscoped.where(id: 1)
+    @notes = Note.all
   end
+
   def trash
+    @tags = Tag.all
+    @category = Category.where(id: 1)
     @notes = Note.only_deleted
   end
 
@@ -104,15 +116,19 @@ class NotesController < ApplicationController
       else
         redirect_ to trash_path, notice: 'Application could note remove this note.'
       end
-    elsif params[:type] == 'forever' 
+    elsif params[:type] == 'forever'
       if @note.really_destroy!
         redirect_to trash_path, notice: 'Note have been destroyed.'
       else
         redirect_ to trash_path, notice: 'Application could note remove this note.'
       end
+    elsif params[:type] == 'normal'
+      if @note.destroy
+        redirect_to category_notes_path.where(category_id: 1), notice: 'Note has been remove'
+      else
+        redirect_to category_note_path, notice: 'Application fail to delete this note!'
+      end
     end
-    
-   
   end
 
   private
@@ -125,14 +141,13 @@ class NotesController < ApplicationController
   def set_note
     @note = @category.notes.find(params[:id])
   end
-  
+
   def load_location
     @location = request.location
   end
-  
 
   # Only allow a trusted parameter "white list" through.
   def note_params
-    params.require(:note).permit(:title, :content,:category_id,:address)
+    params.require(:note).permit(:title, :content, :category_id, :address)
   end
 end

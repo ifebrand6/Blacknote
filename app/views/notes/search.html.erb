@@ -1,47 +1,53 @@
 <% provide(:title, "Search Result") %>
-
-<table class="table table-striped">
-<thead>
-    <tr>
-    <th>Title</th>
-    <th>Content</th>
-    <th></th>
-    </tr>
-</thead>
-<div class="dropdown">
-    <li class="nav-item">
-    <%= link_to "Recent", category_notes_path(@category.ids,recent: true) %>
-    </li>
-    <li class="nav-item">
-    <%= link_to "view tags", notes_tags_path %>
-    </li>
-</div>
-     
-<tbody>
-    <% @results.each do |note| %>
-    <tr>
-        <td><%= note.title %></td>
-        <td><%= render_with_hashtags(note.content) %></td>
-        <td>
-        <div class="btn-group">
-            <%= link_to category_note_path(@category.ids, note),   class: "btn btn-xs btn-default" do %>
-            <%= fa_icon("eye", text: "Show") %>
-            <% end %>
-            <%= link_to  edit_category_note_path(@category.ids, note), class: "btn btn-xs btn-default" do %>
-            <%= fa_icon("pencil", text: "Edit") %>
-            <% end %>
-            <%= link_to 'delete', state_path(note, type: :forever), class: 'badge' %>
+<%= render partial: 'shared/leftsidebar' %>
+<section class="content search_result_page">
+    <div class="block-header">
+        <div class="row">
+            <div class="col-lg-7 col-md-6 col-sm-12">
+                <h2>Search Results
+                <small>Welcome to Blacknote</small>
+                </h2>
+            </div>
+            <div class="col-lg-5 col-md-6 col-sm-12">
+                <ul class="breadcrumb float-md-right">
+                    <li class="breadcrumb-item"><a href="index.html"><i class="zmdi zmdi-home"></i> Blacknote</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">Note</a></li>
+                    <li class="breadcrumb-item active">Search Results</li>
+                </ul>
+            </div>
         </div>
-    </tr>
-    <% end %>
-</tbody>
-</table>
-
-<br>
-
-<%= link_to new_category_note_path(@category.ids), class: "btn btn-default" do %>
-<%= fa_icon("plus", text: "New Note") %>
-<% end %>
-
-<%= link_to "Export all notes", category_notes_path(@category.ids,format: :csv) %> |
-<%= link_to "Deleted note", trash_path %>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="body">
+                        <%= form_tag(search_note_path, :method => "get") do %>
+                        <div class="input-group">
+                            <%= search_field_tag :search, params[:search], placeholder: "Find note", class: "form-control" %>  
+                            <span class="input-group-addon"><i class="zmdi zmdi-search"></i></span>
+                            <% end %> 
+                        </div>                      
+                        <p class="m-b-0">Search Result For <%= @results.count %></p>
+                        <strong> About <%= @results.count%> result ( 0.13 seconds)</strong>
+                    </div>
+                </div>
+                <% @results.each do |note| %>
+                 <div class="tab-content">
+                    <div class="tab-pane card active" id="Web">
+                        <div class="body">
+                            <h5 class="title">
+                            <%= link_to category_note_path(@category.ids, note) do %>
+                            <%= note.title %>
+                            <% end %>
+                           </h5>
+                            <p class="m-t-10"><%= render_with_hashtags(note.content).truncate(200) %></p>
+                            <%= link_to "View", category_note_path(@category.ids, note),   class: "m-r-20" %>
+                            <%= link_to "Edit Note", edit_category_note_path(@category.ids, note), class: "m-r-20" %>
+                        </div>
+                    </div>
+                 <% end%>     
+            </div>
+        </div>
+    </div>
+</section>
