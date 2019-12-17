@@ -2,7 +2,7 @@
 
 class NotesController < ApplicationController
   layout 'react'
-  before_action :get_category, except: %i[test trash state search tags]
+  #before_action :get_category, except: %i[test trash state search tags]
   before_action :set_note, only: %i[show edit update destroy]
   before_action :authenticate_user!
 
@@ -60,6 +60,7 @@ class NotesController < ApplicationController
 
   # PATCH/PUT /notes/1
   def update
+    @location = request.location
     if @note.update(note_params)
       redirect_to category_note_path(@category), notice: 'Note was successfully updated.'
     else
@@ -80,7 +81,7 @@ class NotesController < ApplicationController
   def test; end
 
   def search
-    @category = Category.where(id: 1)
+    #@category = Category.where(id: 1)
     if params[:search].blank?
       # this should be redirected to the notes/index
       redirect_to(root_path, alert: 'Empty field!') && return
@@ -103,7 +104,7 @@ class NotesController < ApplicationController
 
   def trash
     @tags = Tag.all
-    @category = Category.where(id: 1)
+   # @category = Category.where(id: 1)
     @notes = Note.only_deleted
   end
 
@@ -124,9 +125,9 @@ class NotesController < ApplicationController
       end
     elsif params[:type] == 'normal'
       if @note.destroy
-        redirect_to category_notes_path.where(category_id: 1), notice: 'Note has been remove'
+        redirect_to category_notes_path(@category), notice: 'Note has been remove'
       else
-        redirect_to category_note_path, notice: 'Application fail to delete this note!'
+        redirect_to category_note_path(@category), notice: 'Application fail to delete this note!'
       end
     end
   end
@@ -134,9 +135,9 @@ class NotesController < ApplicationController
   private
 
   # Use callbacks to share common setup or constraints between actions.
-  def get_category
-    @category = Category.find(params[:category_id])
-  end
+  # def get_category
+  #   @category = Category.where(:category_id => 1)
+  # end
 
   def set_note
     @note = @category.notes.find(params[:id])

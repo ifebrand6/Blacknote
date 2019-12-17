@@ -37,13 +37,13 @@
                     <div class="tab-pane card active" id="Web">
                         <div class="body">
                             <h5 class="title">
-                            <%= link_to category_note_path(@category.ids, note) do %>
+                            <%= link_to category_note_path(@category, note) do %>
                             <%= note.title %>
                             <% end %>
                            </h5>
                             <p class="m-t-10"><%= render_with_hashtags(note.content).truncate(200) %></p>
-                            <%= link_to "View", category_note_path(@category.ids, note),   class: "m-r-20" %>
-                            <%= link_to "Edit Note", edit_category_note_path(@category.ids, note), class: "m-r-20" %>
+                            <%= link_to "View", category_note_path(@category, note),   class: "m-r-20" %>
+                            <%= link_to "Edit Note", edit_category_note_path(@category, note), class: "m-r-20" %>
                         </div>
                     </div>
                  <% end%>     

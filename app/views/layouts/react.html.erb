@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="/assets/css/inbox.css">
 <link rel="stylesheet" href="/plugins/light-gallery/css/lightgallery.css">
 <link rel="stylesheet" href="/assets/css/color_skins.css">
+   
 </head>
 <body class="theme-cyan">
 <%= render("shared/flash") %>
@@ -49,79 +50,52 @@
         </li>
         <li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="zmdi zmdi-apps"></i></a>
             <ul class="dropdown-menu pullDown">
-                <li><a href="mail-inbox.html"><i class="zmdi zmdi-email m-r-10"></i><span>About</span></a></li>
-                <li><a href="contact.html"><i class="zmdi zmdi-accounts-list m-r-10"></i><span>Contacts</span></a></li>
-                <li><a href="chat.html"><i class="zmdi zmdi-comment-text m-r-10"></i><span>Chat with</span></a></li>
-                <li><a href="invoices.html"><i class="zmdi zmdi-arrows m-r-10"></i><span>Donate</span></a></li>               
+                <li>
+                 <%= link_to root_path(:anchor => "features") do %>
+                 <i class="zmdi zmdi-email m-r-10"></i><span>Features</span>
+                  <% end %>
+                </li>
+                <li>
+                <%= link_to root_path(:anchor => "contact") do %>
+                <i class="zmdi zmdi-accounts-list m-r-10"></i><span>Contacts</span>
+                <% end %>
+                </li>
+                <li>
+                <%= link_to root_path(:anchor => "#") do %>
+                <i class="zmdi zmdi-comment-text m-r-10"></i><span>Chat with</span>
+                <% end %>
+                </li>
+                <li>
+                <%= link_to root_path(:anchor => "download") do %>
+                <i class="zmdi zmdi-arrows m-r-10"></i><span>Donate</span>
+                <% end %>
+                </li>          
             </ul>
         </li>
         <li class="dropdown notifications hidden-sm-down"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="zmdi zmdi-notifications"></i>
-            <span class="label-count">5</span>
+            <span class="label-count"><%- @accessnote.count%></span>
             </a>
             <ul class="dropdown-menu pullDown">
                 <li class="body">
                     <ul class="menu list-unstyled">
+                    <%  @accessnote.first(5).each do |note| %>
                         <li>
-                            <a href="javascript:void(0);">
+                            <%= link_to category_note_path(@category, note) do %>
                                 <div class="media">
-                                    <img class="media-object" src="/images/xs/avatar5.jpg" alt="">
                                     <div class="media-body">
-                                        <span class="name">Alexander <span class="time">35min ago</span></span>
-                                        <span class="message">Contrary to popular belief, Lorem Ipsum random</span>                                        
+                                        <span class="name"><%= note.title.first(20)%> <span class="time"><%= (note.created_at.day)%> day</span></span>
+                                        <span class="message"><%= note.content.truncate(28)%></span>                                        
                                     </div>
                                 </div>
-                            </a>
+                            <%end%>
                         </li>
-                        <li>
-                            <a href="javascript:void(0);">
-                                <div class="media">
-                                    <img class="media-object" src="/images/xs/avatar6.jpg" alt="">
-                                    <div class="media-body">
-                                        <span class="name">Grayson <span class="time">1hr ago</span></span>
-                                        <span class="message">There are many variations of passages</span>                                        
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);">
-                                <div class="media">
-                                    <img class="media-object" src="/images/xs/avatar3.jpg" alt="">
-                                    <div class="media-body">
-                                        <span class="name">Sophia <span class="time">31min ago</span></span>
-                                        <span class="message">There are many variations of passages of Lorem Ipsum</span>                                        
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="alert alert-warning m-b-0" href="javascript:void(0);">
-                                <img class="float-right rounded-circle dropdown-avatar" src="/images/xs/avatar10.jpg" alt="">
-                                <strong>Alex Anistor</strong><br>
-                                <small>Testing functionality...</small>
-                            </a>
-                        </li>                        
-                        <li>
-                            <a href="javascript:void(0);">
-                                <div class="media">
-                                    <img class="media-object" src="/images/xs/avatar4.jpg" alt="">
-                                    <div class="media-body">
-                                        <span class="name">Isabella <span class="time">35min ago</span></span>
-                                        <span class="message">There are many variations of passages</span>                                        
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="alert alert-info m-b-0" href="javascript:void(0);">
-                                <img class="float-right rounded-circle dropdown-avatar" src="/images/xs/avatar9.jpg"  alt="">
-                                <strong>Alicia Adell</strong><br>
-                                <small>Reviewing last changes...</small>
-                            </a>
-                        </li>                                                                        
+                        <%end%>                                                             
                     </ul>
                 </li>
-                <li class="footer"> <a href="javascript:void(0);">View All</a></li>
+                <li class="footer">
+                <%= link_to category_notes_path(@category) do %>View all
+                <% end %>
+                </li>
             </ul>
         </li>      
         <li class="search_bar hidden-sm-down">
@@ -158,9 +132,9 @@
     <script src="/assets/bundles/libscripts.bundle.js"></script> <!-- Lib Scripts Plugin Js --> 
     <script src="/assets/bundles/vendorscripts.bundle.js"></script> <!-- Lib Scripts Plugin Js --> 
     <script src="/plugins/light-gallery/js/lightgallery-all.min.js"></script>
-
+    <script src="/plugins/bootstrap-notify/bootstrap-notify.js"></script>
     <script src="/assets/bundles/mainscripts.bundle.js"></script><!-- Custom Js -->
     <script src="/assets/js/pages/medias/image-gallery.js"></script>
-
+    <script src="/assets/js/pages/ui/notifications.js"></script> <!-- Custom Js -->
 </body>
 </html>

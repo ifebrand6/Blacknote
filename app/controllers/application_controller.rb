@@ -3,6 +3,8 @@
 class ApplicationController < ActionController::Base
   # before_action :authenticate_user!
   # @city = request.location.city
+  before_action :set_variables
+  before_action :get_category
   layout :layout_by_resource
 
   def layout_by_resource
@@ -11,5 +13,11 @@ class ApplicationController < ActionController::Base
     else
       'devise'
     end
+  end
+  def set_variables
+    @accessnote = Note.all
+  end
+  def get_category
+    @category = Category.find(1)
   end
 end
