@@ -10,7 +10,8 @@ gem 'autoprefixer-rails', '>= 5.0.0.1'
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', require: false
 gem 'bootstrap-sass', '~> 3.3'
-gem 'bootstrap_form', '~> 2.3'
+# gem 'bootstrap_form', '~> 2.3'
+gem "bootstrap_form", "~> 4.0"
 gem 'coffee-rails', '~> 4.2'
 gem 'dotenv-rails', '>= 2.0.0'
 gem 'font-awesome-rails'
@@ -23,6 +24,10 @@ gem 'redis', '~> 4.0'
 gem 'sass-rails', '~> 6.0'
 gem 'sidekiq', '>= 4.2.0'
 gem 'turbolinks', '~> 5'
+gem 'devise'
+gem 'paranoia', '~> 2.4', '>= 2.4.2'
+gem 'shareable'
+gem 'geocoder'
 # gem "webpacker"
 
 group :production do

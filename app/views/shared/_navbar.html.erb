@@ -10,28 +10,30 @@
       <%= link_to("Blacknote", root_path, class: "navbar-brand") %>
     </div>
     <div class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <%= navbar_link_to("Home",
-                           root_path,
-                           active_when: { controller: "home" }) %>
-        <li><a href="#contact">Contact</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li class="dropdown-header">Nav header</li>
-            <li><a href="#">Separated link</a></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
-      </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Log in</a></li>
-        <li><a href="#">Register</a></li>
-        <li><a href="#">Help</a></li>
+        <li><%= navbar_link_to("Home", root_path,active_when: { controller: "home"} ) %></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact</a></li>
+
+       <% if user_signed_in? %>
+        <li><%= link_to 'Edit profile', edit_user_registration_path %></li> |
+        <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to "Sign up", new_user_registration_path  %></li> |
+          <li><%= link_to "Login", new_user_session_path  %></li>
+        <% end %>
+       
+        <li>
+          <%= form_tag(search_note_path, :method => "get",   
+              class: 'navbar-form navbar-left') do %>  
+            <div class="input-group">  
+              <%= search_field_tag :search, params[:search], placeholder: "Search", class: "form-control" %>  
+              <div class="input-group-btn">  
+                <%= button_tag "", :class => 'btn btn-info glyphicon glyphicon-search',:name => nil%>  
+              </div>  
+            </div>  
+          <% end %>
+        </li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>

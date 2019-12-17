@@ -1,0 +1,25 @@
+<table class="table table-striped">
+<thead>
+    <tr>
+    <th>Title</th>
+    <th>Content</th>
+    <th></th>
+    </tr>
+</thead>
+<div class="dropdown">
+    <li class="nav-item">
+    <%= link_to "Recent", notes_path(recent: true) %>
+    </li>
+</div>
+     
+<tbody>
+    <% @notes.each do |note| %>
+    <tr>
+        <td><%= note.title %></td>
+        <td><%= note.tags  %></td>
+      
+        <td>
+    </tr>
+    <% end %>
+</tbody>
+</table>

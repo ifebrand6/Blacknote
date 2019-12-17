@@ -1,2 +1,17 @@
 <% provide(:title, "Home") %>
-<p>Find me in app/views/home/index.html.erb</p>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+    <h1>Welcome to Blacknote</h1>
+    <p>Bring out your originility in you!</p>
+    
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+        </div>
+        <p>
+        Site on progess...
+        </p>
+        <%= link_to "Create Your First Black Note",new_category_note_path(@category.ids) ,class: ["btn btn-outline-success"] %>
+        
+    </div>
+    
+</div>

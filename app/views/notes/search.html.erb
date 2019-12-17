@@ -1,0 +1,47 @@
+<% provide(:title, "Listing notes") %>
+
+<table class="table table-striped">
+<thead>
+    <tr>
+    <th>Title</th>
+    <th>Content</th>
+    <th></th>
+    </tr>
+</thead>
+<div class="dropdown">
+    <li class="nav-item">
+    <%= link_to "Recent", category_notes_path(@category.ids,recent: true) %>
+    </li>
+    <li class="nav-item">
+    <%= link_to "view tags", notes_tags_path %>
+    </li>
+</div>
+     
+<tbody>
+    <% @results.each do |note| %>
+    <tr>
+        <td><%= note.title %></td>
+        <td><%= render_with_hashtags(note.content) %></td>
+        <td>
+        <div class="btn-group">
+            <%= link_to category_note_path(@category.ids, note),   class: "btn btn-xs btn-default" do %>
+            <%= fa_icon("eye", text: "Show") %>
+            <% end %>
+            <%= link_to  edit_category_note_path(@category.ids, note), class: "btn btn-xs btn-default" do %>
+            <%= fa_icon("pencil", text: "Edit") %>
+            <% end %>
+            <%= link_to 'delete', state_path(note, type: :forever), class: 'badge' %>
+        </div>
+    </tr>
+    <% end %>
+</tbody>
+</table>
+
+<br>
+
+<%= link_to new_category_note_path(@category.ids), class: "btn btn-default" do %>
+<%= fa_icon("plus", text: "New Note") %>
+<% end %>
+
+<%= link_to "Export all notes", category_notes_path(@category.ids,format: :csv) %> |
+<%= link_to "Deleted note", trash_path %>
