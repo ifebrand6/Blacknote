@@ -1,33 +1,6 @@
 <% provide(:title, "New note") %>
- <%= render partial: 'shared/leftsidebar' %>
-<section class="content blog-page">
-    <div class="block-header">
-        <div class="row">
-            <div class="col-lg-7 col-md-6 col-sm-12">
-                <h2>New Note
-                    <small>create a quick note</small>
-                </h2>
-            </div>
-            <div class="col-lg-5 col-md-6 col-sm-12">
-                <ul class="breadcrumb float-md-right">
-                    <li class="breadcrumb-item">
-                    <%= link_to root_path  do %>
-                    <i class="zmdi zmdi-home"></i> BlacKnote
-                    <%end%>
-                    </li>
-                    <li class="breadcrumb-item">
-                        <%= link_to category_notes_path(@category) do %> Note<%end%>
-                    </li>
-                    <li class="breadcrumb-item active">New</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid">
-      <div class="row">
-          <div class="col-lg-12">
-          <%= render "form" %>
-        </div>
-      </div>
-    </div>
-</section>
+<div class="row">
+  <div class="col-md-8">
+    <%= render "form" %>
+  </div>
+</div>

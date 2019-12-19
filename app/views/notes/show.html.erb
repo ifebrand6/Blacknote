@@ -1,99 +1,23 @@
 <% provide(:title) do %>
   Note #<%= @note.id %>
 <% end %>
-<section class="content inbox">
-    <div class="block-header">
-        <div class="row">
-            <div class="col-lg-7 col-md-6 col-sm-12">
-                <h2>View Note
-                <small>Your Blacknote</small>
-                </h2>
-            </div>
-            <div class="col-lg-5 col-md-6 col-sm-12">
-                <ul class="breadcrumb float-md-right">
-                    <li class="breadcrumb-item">
-                    <%= link_to root_path  do %>
-                    <i class="zmdi zmdi-home"></i> BlacKnote
-                    <%end%>
-                    </li>
-                    <li class="breadcrumb-item">
-                        <%= link_to category_note_path(@category) do %> Show<%end%>
-                    </li>
-                    <li class="breadcrumb-item active"><%= @note.id%></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid">
-        <div class="row clearfix">
-            <div class="col-lg-12">
-                <div class="card action_bar">
-                    <div class="body">
-                        <div class="row clearfix">
-                            <div class="col-lg-1 col-md-2 col-3">
-                                <br>                           
-                            </div>
-                            <div class="col-lg-5 col-md-4 col-6">
-                                <br>
-                            </div>                            
-                            <div class="col-lg-6 col-md-6 col-3 text-right"> 
-                                <%= link_to new_category_note_path(@category), class: "btn btn-neutral hidden-sm-down" do %>
-                                 <i class="zmdi zmdi-plus-circle"></i>   
-                                <% end %>  
-                                <%= link_to category_notes_path(format: :csv),class: "btn btn-neutral hidden-sm-down" do %>      
-                                  <i class="zmdi zmdi-download"></i>
-                                <% end %>
-                                <%= link_to edit_category_note_path(@category), class: "btn btn-neutral hidden-sm-down" do %>
-                                   <i class="zmdi zmdi-edit"></i>
-                                 <%end%> 
-                                <%= link_to state_path(@note,type: :normal), class: "btn btn-neutral btn-danger", method: :delete, data: { confirm: "Are you sure you want to delete this note?" } do %>
-                                  <i class="zmdi zmdi-delete"></i>
-                                <% end %>
-                            </div>                            
-                        </div>
-                    </div>
-                </div>
-            </div>           
-        </div>
-        <div class="row clearfix">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h4 class="m-t-0 m-b-20"><%= @note.title%></h4>
-                                <hr>
-                                <div class="media">
-                                    <div class="float-left">
-                                       
-                                    </div>
-                                    <div class="media-body">
-                                        <p class="m-b-0">
-                                            <strong class="text-muted m-r-5">From:</strong>
-                                            <span class="text-muted text-sm"><%= @note.created_at%></span>
-                                            </p>
-                                            <p class="m-b-0">
-                                                <strong class="text-muted m-r-5">Number of words:</strong>
-                                                <span class="text-muted text-sm"><%= @note.content.split.size %></span>
-                                                </p>
-                                      </div>
-                                  </div>
-                                </div>
-                                <hr>
-                            </div>
-                            <div class="col-md-12">
-                                <p><%= @note.content%></p>                                
-                            </div>
-                                         
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="body">
-                        <strong>Click here to share</strong><%= render_shareable buttons: ['facebook', 'twitter'] %>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <th class="col-sm-2">Title</th>
+      <td><%= @note.title %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Content</th>
+      <td><%= @note.content %></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  <%= link_to "Edit", edit_category_note_path(@category), class: "btn btn-primary" %>
+  <%= link_to "Back", category_notes_path(@category), class: "btn btn-link" %>
+</p>
+<br>
+<%= render_shareable buttons: ['twitter', 'facebook'] %>
