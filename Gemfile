@@ -33,6 +33,8 @@ gem 'meta-tags'
 # gem 'less-rails-bootstrap'
 # gem 'jquery-rails'
 # gem 'mini_racer'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 
 group :production do
   gem 'postmark-rails'
