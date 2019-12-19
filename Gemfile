@@ -28,7 +28,11 @@ gem 'devise'
 gem 'paranoia', '~> 2.4', '>= 2.4.2'
 gem 'shareable'
 gem 'geocoder'
-# gem "webpacker"
+gem "webpacker"
+gem "meta-tags"
+# gem 'less-rails-bootstrap'
+# gem 'jquery-rails'
+# gem 'mini_racer'
 
 group :production do
   gem 'postmark-rails'

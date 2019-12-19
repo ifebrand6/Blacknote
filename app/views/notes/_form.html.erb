@@ -4,6 +4,7 @@
   
   <%= f.text_field :title %>
   <%= f.text_area :content, rows: 5 %>
+  <%= f.hidden_field :address, :value => @location.ip %>
   <%= f.primary %>
   <%= link_to "Back",category_notes_path(@category), class: "btn btn-link" %>
 

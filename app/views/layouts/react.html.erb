@@ -1,0 +1,211 @@
+<!doctype html>
+<html class="no-js " lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<meta name="description" content="sQuare Bootstrap 4 Admin Dashboard with ui kit.">
+
+<title>BlacKnote</title>
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<!-- Favicon-->
+<link rel="stylesheet" href="/plugins/bootstrap/css/bootstrap.min.css">
+<!-- Custom Css -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/blog.css">
+<link rel="stylesheet" href="/assets/css/color_skins.css">
+</head>
+<body class="theme-cyan">
+<!-- Page Loader -->
+<div class="page-loader-wrapper">
+    <div class="loader">
+        <div class="m-t-30"><img  class="zmdi-hc-spin" src="/images/logo.svg" width="48" height="48" alt="Bl">
+        </div>
+        <p>Please wait...</p>        
+    </div>
+</div>
+
+<!-- Overlay For Sidebars -->
+<div class="overlay"></div>
+<!-- Top Bar -->
+<nav class="navbar">
+    <ul class="nav navbar-nav navbar-left">
+        <li>
+            <div class="navbar-header">
+                <a href="javascript:void(0);" class="bars"></a>
+                <a class="navbar-brand" href="index.html"><img src="/images/logo-white.svg" width="30"><span class="m-l-10">BlacKnote</span></a>
+            </div>
+        </li>        
+        <li>
+            <a href="javascript:void(0);" class="menu-sm" data-close="true">
+                <i class="zmdi zmdi-arrow-left"></i>
+                <i class="zmdi zmdi-arrow-right"></i>
+            </a>
+        </li>
+        <li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="zmdi zmdi-apps"></i></a>
+            <ul class="dropdown-menu pullDown">
+                <li><a href="mail-inbox.html"><i class="zmdi zmdi-email m-r-10"></i><span>About</span></a></li>
+                <li><a href="contact.html"><i class="zmdi zmdi-accounts-list m-r-10"></i><span>Contacts</span></a></li>
+                <li><a href="chat.html"><i class="zmdi zmdi-comment-text m-r-10"></i><span>Chat with</span></a></li>
+                <li><a href="invoices.html"><i class="zmdi zmdi-arrows m-r-10"></i><span>Donate</span></a></li>               
+            </ul>
+        </li>
+        <li class="dropdown notifications hidden-sm-down"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="zmdi zmdi-notifications"></i>
+            <span class="label-count">5</span>
+            </a>
+            <ul class="dropdown-menu pullDown">
+                <li class="body">
+                    <ul class="menu list-unstyled">
+                        <li>
+                            <a href="javascript:void(0);">
+                                <div class="media">
+                                    <img class="media-object" src="/images/xs/avatar5.jpg" alt="">
+                                    <div class="media-body">
+                                        <span class="name">Alexander <span class="time">35min ago</span></span>
+                                        <span class="message">Contrary to popular belief, Lorem Ipsum random</span>                                        
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">
+                                <div class="media">
+                                    <img class="media-object" src="/images/xs/avatar6.jpg" alt="">
+                                    <div class="media-body">
+                                        <span class="name">Grayson <span class="time">1hr ago</span></span>
+                                        <span class="message">There are many variations of passages</span>                                        
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">
+                                <div class="media">
+                                    <img class="media-object" src="/images/xs/avatar3.jpg" alt="">
+                                    <div class="media-body">
+                                        <span class="name">Sophia <span class="time">31min ago</span></span>
+                                        <span class="message">There are many variations of passages of Lorem Ipsum</span>                                        
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="alert alert-warning m-b-0" href="javascript:void(0);">
+                                <img class="float-right rounded-circle dropdown-avatar" src="/images/xs/avatar10.jpg" alt="">
+                                <strong>Alex Anistor</strong><br>
+                                <small>Testing functionality...</small>
+                            </a>
+                        </li>                        
+                        <li>
+                            <a href="javascript:void(0);">
+                                <div class="media">
+                                    <img class="media-object" src="/images/xs/avatar4.jpg" alt="">
+                                    <div class="media-body">
+                                        <span class="name">Isabella <span class="time">35min ago</span></span>
+                                        <span class="message">There are many variations of passages</span>                                        
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="alert alert-info m-b-0" href="javascript:void(0);">
+                                <img class="float-right rounded-circle dropdown-avatar" src="/images/xs/avatar9.jpg"  alt="">
+                                <strong>Alicia Adell</strong><br>
+                                <small>Reviewing last changes...</small>
+                            </a>
+                        </li>                                                                        
+                    </ul>
+                </li>
+                <li class="footer"> <a href="javascript:void(0);">View All</a></li>
+            </ul>
+        </li>      
+        <li class="search_bar hidden-sm-down">
+        <%= form_tag(search_note_path, :method => "get") do %>
+        <div class="input-group">  
+            <%= search_field_tag :search, params[:search], placeholder: "Search", class: "form-control" %>  
+            <span class="input-group-addon">
+            <i class="zmdi zmdi-search"></i>
+            </span>
+        </div>
+        <% end %> 
+        </li>
+
+        <li class="float-right">            
+            <a href="javascript:void(0);" class="fullscreen hidden-md-down hidden-sm-down" data-provide="fullscreen"><i class="zmdi zmdi-fullscreen"></i></a>            
+            <a href="javascript:void(0);" class="js-right-sidebar"><i class="zmdi zmdi-settings"></i></a>
+            <%= link_to  edit_user_registration_path, :class => "mega-menu" do %>
+            <i class="zmdi zmdi-account-circle"></i>
+            <%end%>
+            <%= link_to  destroy_user_session_path, :method => :delete , :class => "mega-menu" do %>
+            <i class="zmdi zmdi-power"></i>
+            <%end%>
+        </li>        
+    </ul>
+</nav>
+<!-- Left Sidebar -->
+<aside id="leftsidebar" class="sidebar">
+    <div class="menu">
+        <ul class="list">
+            <li>
+            </li>
+            <li class="header">MAIN</li>
+            <li class="active open"><a href="index.html"><i class="zmdi zmdi-home"></i><span>Home</span> </a></li>
+                <li><a href="#"><i class="zmdi zmdi-plus-circle"></i><span>New Note</span> </a></li>
+                <li ><a href="#"><i class="zmdi zmdi-sort-amount-desc"></i><span>Recent Note</span> </a></li>
+                <li><a href="#"><i class="zmdi zmdi-grid"></i><span>Note Tags</span> </a></li>
+                               
+                <li class="header">CATEGORIES</li>
+                <li><a href="javascript:void(0);" class="waves-effect waves-block"><i class="zmdi zmdi-circle-o col-green"></i><span>Web Design</span></a></li>
+                <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-circle-o col-red"></i><span>Photography</span> </a>
+                    <ul class="ml-menu">
+                        <li><a href="javascript:void(0);">Wild</a></li>
+                        <li><a href="javascript:void(0);">Marriage</a></li>
+                    </ul>
+                </li> 
+                <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-circle-o col-amber"></i><span>Technology</span> </a>
+                    <ul class="ml-menu">
+                        <li><a href="javascript:void(0);">UI UX Design</a></li>
+                        <li><a href="javascript:void(0);">Android</a></li>
+                        <li><a href="javascript:void(0);">iOS</a></li>
+                        <li><a href="javascript:void(0);">Wordpress</a></li>
+                    </ul>
+                </li>               
+                <li><a href="javascript:void(0);" class="waves-effect waves-block"><i class="zmdi zmdi-circle-o col-purple"></i><span>Lifestyle</span></a></li>
+                <li><a href="javascript:void(0);" class="waves-effect waves-block"><i class="zmdi zmdi-circle-o col-lime"></i><span>Sports</span></a></li>
+        </ul>
+    </div>
+</aside>
+<!-- Right Chatbar -->
+<!-- Right Sidebar -->
+
+
+<section class="content blog-page">
+    <div class="block-header">
+        <div class="row">
+            <div class="col-lg-7 col-md-6 col-sm-12">
+                <h2>Inventory
+                    <small>Welcome to BlacKnote</small>
+                </h2>
+            </div>
+            <div class="col-lg-5 col-md-6 col-sm-12">
+                <ul class="breadcrumb float-md-right">
+                    <li class="breadcrumb-item"><a href="index.html"><i class="zmdi zmdi-home"></i> BlacKnote</a></li>
+                    <li class="breadcrumb-item"><a href="blog-dashboard.html">All</a></li>
+                    <li class="breadcrumb-item active">Notes</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <%= yield %>
+    </div>
+</section>
+<!-- Jquery Core Js --> 
+    <!-- Jquery Core Js --> 
+    <script src="/assets/bundles/libscripts.bundle.js"></script> <!-- Lib Scripts Plugin Js --> 
+    <script src="/assets/bundles/vendorscripts.bundle.js"></script> <!-- Lib Scripts Plugin Js --> 
+
+    <script src="/assets/bundles/mainscripts.bundle.js"></script><!-- Custom Js -->
+
+</body>
+</html>
