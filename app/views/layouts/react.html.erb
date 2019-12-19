@@ -19,7 +19,6 @@
    
 </head>
 <body class="theme-cyan">
-<%= render("shared/flash") %>
 <!-- Page Loader -->
 <div class="page-loader-wrapper">
     <div class="loader">
@@ -73,7 +72,7 @@
             </ul>
         </li>
         <li class="dropdown notifications hidden-sm-down"><a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="zmdi zmdi-notifications"></i>
-            <span class="label-count"><%- @accessnote.count%></span>
+            <span class="label-count"><%=@accessnote.count%></span>
             </a>
             <ul class="dropdown-menu pullDown">
                 <li class="body">
@@ -125,10 +124,12 @@
 
 <!-- Right Chatbar -->
 <!-- Right Sidebar -->
+<%= render("shared/flash") %>
+<%= render partial: 'shared/leftsidebar' %>
+<%= render("shared/flash") %>
 
 <%= yield %>
-<!-- Jquery Core Js --> 
-    <!-- Jquery Core Js --> 
+
     <script src="/assets/bundles/libscripts.bundle.js"></script> <!-- Lib Scripts Plugin Js --> 
     <script src="/assets/bundles/vendorscripts.bundle.js"></script> <!-- Lib Scripts Plugin Js --> 
     <script src="/plugins/light-gallery/js/lightgallery-all.min.js"></script>

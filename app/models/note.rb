@@ -60,11 +60,4 @@ class Note < ApplicationRecord
     where('lower(categories.name) LIKE :search OR lower(notes.content) LIKE :search OR lower(notes.title) LIKE :search', search: "%#{search.downcase}%").uniq
   end
 
-  # added method for location finding
-  # def address
-  #     request.location.address
-  # end
-  # def get_location
-  #     @city = request.location
-  # end
 end

@@ -1,7 +1,6 @@
 <% provide(:title) do %>
   Note #<%= @note.id %>
 <% end %>
-<%= render partial: 'shared/leftsidebar' %>
 <section class="content inbox">
     <div class="block-header">
         <div class="row">
@@ -12,8 +11,14 @@
             </div>
             <div class="col-lg-5 col-md-6 col-sm-12">
                 <ul class="breadcrumb float-md-right">
-                    <li class="breadcrumb-item"><a href="index.html"><i class="zmdi zmdi-home"></i> Blacknote</a></li>
-                    <li class="breadcrumb-item"><a href="javascript:void(0);">Show</a></li>
+                    <li class="breadcrumb-item">
+                    <%= link_to root_path  do %>
+                    <i class="zmdi zmdi-home"></i> BlacKnote
+                    <%end%>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <%= link_to category_note_path(@category) do %> Show<%end%>
+                    </li>
                     <li class="breadcrumb-item active"><%= @note.id%></li>
                 </ul>
             </div>

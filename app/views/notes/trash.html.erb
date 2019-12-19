@@ -11,8 +11,14 @@
             </div>
             <div class="col-lg-5 col-md-6 col-sm-12">
                 <ul class="breadcrumb float-md-right">
-                    <li class="breadcrumb-item"><a href="index.html"><i class="zmdi zmdi-home"></i> BlackNote</a></li>
-                    <li class="breadcrumb-item"><a href="blog-dashboard.html">Trash</a></li>
+                    <li class="breadcrumb-item">
+                    <%= link_to root_path  do %>
+                    <i class="zmdi zmdi-home"></i> BlacKnote
+                    <%end%>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <%= link_to trash_path do %> Trash<%end%>
+                    </li>
                     <li class="breadcrumb-item active">List</li>
                 </ul>
             </div>
