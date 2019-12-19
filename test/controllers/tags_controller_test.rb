@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class TagsControllerTest < ActionDispatch::IntegrationTest
@@ -5,17 +7,17 @@ class TagsControllerTest < ActionDispatch::IntegrationTest
     @tag = tags(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get tags_url
     assert_response :success
   end
 
-  test "should get new" do
+  test 'should get new' do
     get new_tag_url
     assert_response :success
   end
 
-  test "should create tag" do
+  test 'should create tag' do
     assert_difference('Tag.count') do
       post tags_url, params: { tag: { keyword: @tag.keyword } }
     end
@@ -23,22 +25,22 @@ class TagsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to tag_url(Tag.last)
   end
 
-  test "should show tag" do
+  test 'should show tag' do
     get tag_url(@tag)
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get edit_tag_url(@tag)
     assert_response :success
   end
 
-  test "should update tag" do
+  test 'should update tag' do
     patch tag_url(@tag), params: { tag: { keyword: @tag.keyword } }
     assert_redirected_to tag_url(@tag)
   end
 
-  test "should destroy tag" do
+  test 'should destroy tag' do
     assert_difference('Tag.count', -1) do
       delete tag_url(@tag)
     end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddUserToNotes < ActiveRecord::Migration[5.2]
   def change
     add_reference :notes, :user, foreign_key: true
