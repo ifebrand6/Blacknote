@@ -28,18 +28,9 @@ class NotesController < ApplicationController
   # GET /notes/1
   def show
     respond_to do |format|
-    format.html
-    format.pdf do
-        render pdf: "Note No. #{@note.id}",
-        page_size: 'A4',
-        template: "notes/show.html.erb",
-        layout: "pdf.html",
-        orientation: "Landscape",
-        lowquality: true,
-        zoom: 1,
-        dpi: 75
+      format.html
+      format.csv { send_data @note.as_pdf }
     end
-  end
   end
 
   # GET /notes/new
