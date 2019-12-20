@@ -32,6 +32,10 @@ gem 'meta-tags'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 
+group :production do
+  gem 'uglifier'
+end
+
 group :development, :test do
   gem 'byebug'
 end
