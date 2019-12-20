@@ -28,11 +28,7 @@ gem 'sass-rails', '~> 6.0'
 gem 'shareable'
 gem 'sidekiq', '>= 4.2.0'
 gem 'turbolinks', '~> 5'
-# gem "webpacker"
 gem 'meta-tags'
-# gem 'less-rails-bootstrap'
-# gem 'jquery-rails'
-# gem 'mini_racer'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 
