@@ -78,7 +78,7 @@ Rails.application.configure do
   # Production email config
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = {
-    host":http://TODO_PUT_YOUR_DOMAIN_HERE"
+    host: "http://TODO_PUT_YOUR_DOMAIN_HERE"
   }
   config.action_mailer.raise_delivery_errors = true
   # config.action_mailer.default_url_options = {
