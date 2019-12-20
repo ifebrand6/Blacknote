@@ -15,6 +15,8 @@ class CategoriesController < ApplicationController
   def new
     @category = Category.new
   end
+  def chan
+  end
 
   # GET /categories/1/edit
   def edit; end
