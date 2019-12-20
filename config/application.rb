@@ -21,6 +21,6 @@ module Blacknote
     # the framework and any gems in your application.
 
     # Use sidekiq to process Active Jobs (e.g. ActionMailer's deliver_later)
-    config.active_job.queue_adapter = :sidekiq
+    #config.active_job.queue_adapter = :sidekiq
   end
 end
