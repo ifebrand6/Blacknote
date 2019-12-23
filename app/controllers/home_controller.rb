@@ -2,7 +2,7 @@
 
 # Renders the home page.
 class HomeController < ApplicationController
-  skip_before_action :index
+  skip_before_action :get_category, only: %i[index]
   layout 'landing_page'
   def index
    
