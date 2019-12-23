@@ -18,6 +18,6 @@ class ApplicationController < ActionController::Base
     @accessnote = Note.all
   end
   def get_category
-    @category = Category.find(1)
+    @category = Category.find_or_create_by(id:1, name: "All")
   end
 end
