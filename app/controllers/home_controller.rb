@@ -6,4 +6,5 @@ class HomeController < ApplicationController
   def index
    
   end
+  # fdfd
 end
