@@ -10,8 +10,16 @@
             </div>
             <div class="col-lg-5 col-md-6 col-sm-12">
                 <ul class="breadcrumb float-md-right">
-                    <li class="breadcrumb-item"><a href="#"><i class="zmdi zmdi-home"></i> BlackNote</a></li>
-                    <li class="breadcrumb-item"><a href="#">Note</a></li>
+                    <li class="breadcrumb-item">
+                    <%= link_to root_path do %> 
+                         <i class="zmdi zmdi-home"></i> BlacKnote
+                    <%end%>
+                    </li>
+                     <li class="breadcrumb-item">
+                    <%= link_to category_notes_path(@category) do %> 
+                        Note
+                    <%end%>
+                    </li>
                     <li class="breadcrumb-item active">List</li>
                 </ul>
             </div>
