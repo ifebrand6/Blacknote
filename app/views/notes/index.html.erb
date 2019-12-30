@@ -46,8 +46,7 @@
                         </ul>
                     </div>                    
                     <div class="body">
-                        
-                        <p><%= (note.content).truncate_words(35) %></p>
+                        <p><%= ((note.content).truncate_words(35)).html_safe%></p>
                         <%= link_to "View ",category_note_path(@category, note),title: 'view note',class: "btn btn-round btn-info" %>
                       <%= link_to "Edit",edit_category_note_path(@category, note),title: 'view note',class: "btn btn-round btn-info" %>
                     </div>
