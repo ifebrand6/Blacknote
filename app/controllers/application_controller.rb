@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   # before_action :authenticate_user!
   # @city = request.location.city
   before_action :set_variables
-  before_action :get_category
+  before_action :set_category
   layout :layout_by_resource
 
   def layout_by_resource
@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   def set_variables
     @accessnote = Note.all
   end
-  def get_category
+  def set_category
     @category = Category.find_or_create_by(id:1, name: "All")
   end
 end
