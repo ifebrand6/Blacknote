@@ -316,6 +316,7 @@ GEM
     websocket-extensions (0.1.4)
     wicked_pdf (1.4.0)
       activesupport
+    will_paginate (3.1.8)
     wkhtmltopdf-binary (0.12.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
@@ -381,6 +382,7 @@ DEPENDENCIES
   uglifier
   webdrivers
   wicked_pdf
+  will_paginate (~> 3.1.0)
   wkhtmltopdf-binary
   xray-rails (>= 0.1.18)
 

@@ -15,9 +15,9 @@ class NotesController < ApplicationController
     @tags = Tag.all
     if
     params[:recent].present?
-      @notes = @category.notes.recent
+      @notes = @category.notes.recent.paginate(page: params[:page], per_page: 2)
     else
-      @notes = Note.all_with_category_details
+      @notes = Note.all_with_category_details.paginate(page: params[:page], per_page: 3)
       respond_to do |format|
         format.html
         format.csv { send_data @notes.as_csv }
@@ -113,8 +113,7 @@ class NotesController < ApplicationController
 
   def trash
     @tags = Tag.all
-   # @category = Category.where(id: 1)
-    @notes = Note.only_deleted
+    @notes = Note.only_deleted.paginate(page: params[:page], per_page: 3)
   end
 
   # data state- recover or destroy and object in the database

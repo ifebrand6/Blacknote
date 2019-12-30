@@ -12,10 +12,7 @@ class Note < ApplicationRecord
   # sort the note to most recent
   scope :recent, -> { order(created_at: :desc) }
   scope :most_recent, -> { order(title: DESC) }
-  # Ex:- scope :active, lambda {where(:active => true)}
-
-  # reverse_geocoded_by :latitude, :longitude
-  # after_validation :reverse_geocode
+  self.per_page = 5
 
   after_create do
     note = Note.find_by(id: id)

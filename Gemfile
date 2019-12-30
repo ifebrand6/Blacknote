@@ -30,6 +30,7 @@ gem 'turbolinks', '~> 5'
 gem 'meta-tags'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+gem 'will_paginate', '~> 3.1.0'
 
 group :production do
   gem 'uglifier'

@@ -26,7 +26,7 @@
                         <h3 class="m-t-0 m-b-5"> <%= link_to category_note_path(@category, note) do %>
                           <%= note.title %>
                           <% end %>
-                        </h3>
+                        </h3> 
                         <ul class="meta">
                             <li><%= link_to category_note_path(@category, note) do %>
                              <i class="zmdi zmdi-calendar-note col-blue"></i>
@@ -55,11 +55,7 @@
                 <% end %>
                                       
                 <ul class="pagination pagination-primary">
-                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    <li class="page-item"><%= will_paginate @notes, class: "page-link"%></li>
                 </ul>                
             </div>
             <div class="col-lg-4 col-md-12 right-box">
