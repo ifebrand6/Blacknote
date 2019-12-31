@@ -31,6 +31,7 @@ gem 'meta-tags'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'will_paginate', '~> 3.1.0' 
+gem 'friendly_id', '~> 5.2.4'
 
 group :production do
   gem 'uglifier'

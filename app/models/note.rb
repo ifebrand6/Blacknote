@@ -3,6 +3,8 @@
 require 'csv'
 
 class Note < ApplicationRecord
+  extend FriendlyId
+  friendly_id :title, use: [:slugged, :finders]
   acts_as_paranoid
   belongs_to :user
   belongs_to :category, -> { with_deleted }, class_name: 'Category'
@@ -13,6 +15,15 @@ class Note < ApplicationRecord
   scope :recent, -> { order(created_at: :desc) }
   scope :most_recent, -> { order(title: DESC) }
   self.per_page = 5
+  
+  def should_generate_new_friendly_id?
+    slug.blank? || title_changed?
+  end
+  def slug=(value)
+    if value.present?
+      write_attribute(:slug, value)
+    end
+  end
 
   after_create do
     note = Note.find_by(id: id)

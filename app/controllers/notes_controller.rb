@@ -71,10 +71,10 @@ class NotesController < ApplicationController
   def update
     @location = request.location
     if @note.update(note_params)
-      redirect_to category_note_path(@category), notice: 'Note was successfully updated.'
+      redirect_to category_note_path(@category,@note.slug), notice: 'Note was successfully updated.'
     else
       flash[:errors] = @note.errors.full_messages
-      render :edit
+      render :editßßß
     end
   end
 
@@ -148,7 +148,7 @@ class NotesController < ApplicationController
   # end
 
   def set_note
-    @note = @category.notes.find(params[:id])
+    @note = @category.notes.friendly.find(params[:id])
   end
 
   def load_location
@@ -157,6 +157,6 @@ class NotesController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def note_params
-    params.require(:note).permit(:title, :content, :category_id, :address)
+    params.require(:note).permit(:title, :content, :category_id, :address,:slug)
   end
 end
