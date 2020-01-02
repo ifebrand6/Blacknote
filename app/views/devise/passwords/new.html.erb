@@ -1,29 +1,16 @@
-<% provide(:title, "New profile") %>
-<div class="container">
-    <div class="col-md-12 content-center">
-        <div class="card-plain">
-                <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-                <%= render "devise/shared/error_messages", resource: resource %>
-                <div class="header">
-                    <div class="logo-container expandUp">
-                        <img src="/main//images/logo.svg" alt="">
-                    </div>
-                    <h5>Forgot Password?</h5>
-                    <span class="text-muted">Enter your e-mail address below to reset your password.</span>
-                </div>
-                <div class="content">
-                    <div class="input-group input-lg">
-                      <%= f.email_field :email, class: 'form-control',placeholder: 'Enter  Email'%>
-                        <span class="input-group-addon"><i class="zmdi zmdi-email"></i></span>
-                    </div>
-                </div>
-                <div class="footer">
-                    <%= f.submit "SUBMIT",class: 'btn btn-primary btn-round btn-lg btn-block waves-effect waves-light' %>
-                    <h5><a href="javascript:void(0);" class="link">Need Help?</a></h5>
-                </div>
-            
-            <% end %>
-            
-        </div>
-    </div>
-</div>
+<h2>Forgot your password?</h2>
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Send me reset password instructions" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>

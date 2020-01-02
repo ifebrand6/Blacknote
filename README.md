@@ -62,23 +62,3 @@ Optionally:
 [rbenv]:https://github.com/sstephenson/rbenv
 [redis]:http://redis.io
 [Homebrew]:http://brew.sh
-
-CODE TO CHECK USER STATE
-
-<p class="navbar-text float-right">
-<% if user_signed_in? %>
-Logged in as <strong><%= current_user.email %></strong>.
-<%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-<%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-<% else %>
-<%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-<%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-<% end %>
-</p>
-
-REFIXED FOR PAGINATION LINK DESIGN
-<li class="page-item"><a class="page-link" href="#">Previous</a></li>
-<li class="page-item active"><a class="page-link" href="#">1</a></li>
-<li class="page-item"><a class="page-link" href="#">2</a></li>
-<li class="page-item"><a class="page-link" href="#">3</a></li>
-<li class="page-item"><a class="page-link" href="#">Next</a></li>

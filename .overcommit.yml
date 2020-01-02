@@ -20,7 +20,7 @@ verify_signatures: false
 
 PreCommit:
   BundleCheck:
-    enabled: false
+    enabled: true
 
   FixMe:
     enabled: true
@@ -32,14 +32,14 @@ PreCommit:
     enabled: true
 
   RailsSchemaUpToDate:
-    enabled: false
+    enabled: true
 
   RuboCop:
     enabled: false
     on_warn: fail
 
   TrailingWhitespace:
-    enabled: false
+    enabled: true
     exclude:
       - "**/db/structure.sql"
 

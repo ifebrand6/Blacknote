@@ -1,22 +1,11 @@
+<%= bootstrap_form_for(@note) do |f| %>
 
-<%= bootstrap_form_with(model: [@category, @note], local: true) do |f| %>
-<%= f.alert_message "Please review the problems below:" %>
-<div class="card">
-    <div class="body">
-        <div class="form-group">
-            <%= f.text_field :title, class: 'form-control', placeholder: 'Enter Your Note Title'%>
-        </div>                  
-    </div>
-     <div>
-        <%= f.hidden_field :address, :value => @location.ip %>
-  </div>
-</div>
-<div class="card">
-    <div class="body">
-        <%= f.text_area :content,id:'editor', rows: 5, cols: '40' %>
-        <%= f.primary %>
-    </div>
-  <%= link_to "Back",category_notes_path(@category), class: "btn btn-link" %>
-</div>
+  <%= f.alert_message "Please review the problems below:" %>
+
+  <%= f.text_field :title %>
+  <%= f.text_area :content, rows: 5 %>
+
+  <%= f.primary %>
+  <%= link_to "Back", notes_path, class: "btn btn-link" %>
+
 <% end %>
-
