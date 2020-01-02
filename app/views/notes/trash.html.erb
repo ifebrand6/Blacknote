@@ -1,0 +1,116 @@
+
+<% provide(:title, "Trash") %>
+<%= render partial: 'shared/leftsidebar' %>
+<section class="content blog-page">
+    <div class="block-header">
+        <div class="row">
+            <div class="col-lg-7 col-md-6 col-sm-12">
+                <h2>Deleted Note
+                    <small>Notes will automatically delete every 30 days.</small>
+                </h2>
+            </div>
+            <div class="col-lg-5 col-md-6 col-sm-12">
+                <ul class="breadcrumb float-md-right">
+                    <li class="breadcrumb-item">
+                    <%= link_to root_path do %> 
+                         <i class="zmdi zmdi-home"></i> BlacKnote
+                    <%end%>
+                    </li>
+                    <li class="breadcrumb-item">
+                    <%= link_to trash_path do %> 
+                        Trash
+                    <%end%>
+                    </li>
+                    <li class="breadcrumb-item active">List</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 col-md-12 left-box">
+                <% @notes.each do |note| %>
+                <div class="card single_post">
+                    <div class="body">
+                        <h3 class="m-t-0 m-b-5"> <%= link_to category_note_path(@category, note) do %>
+                        <%= note.title %>
+                        <% end %>
+                        </h3>
+                        <ul class="meta">
+                            <li><%= link_to category_note_path(@category, note) do %>
+                            <i class="zmdi zmdi-calendar-note col-blue"></i>
+                            <%= note.deleted_at %>
+                            <% end %>
+                        </li>
+                            <li><%= link_to category_note_path(@category, note) do %>
+                            <i class="zmdi zmdi-label col-red"></i>
+                                <%= note.category.name %>
+                            <% end %>
+                            </li>
+                            <li><%= link_to category_note_path(@category, note) do %>
+                            <i class="zmdi zmdi-tag-more col-blue"></i>
+                                <%= note.tags.count %>
+                            <% end %>
+                            </li>
+                        </ul>
+                    </div>                    
+                    <div class="body">
+                        
+                        <p><%= (note.content).truncate_words(35) %></p>
+                        <%= link_to 'Restore', state_path(note,type: :recover), title: 'view note',class: "btn btn-round btn-info"  %>
+                        <%= link_to 'Destroy', state_path(note,type: :recover), title: 'view note',class: "btn btn-round btn-info"  %>
+                    </div>
+                </div>    
+                <% end %>
+                                      
+                <ul class="pagination pagination-primary">
+                    <li class="page-item"><%= will_paginate @notes, class: "page-link"%></li>
+                </ul>                
+            </div>
+            <div class="col-lg-4 col-md-12 right-box">
+                <div class="card">
+                    <div class="body search">
+                        <%= form_tag(search_note_path, :method => "get") do %>
+                        <div class="input-group m-b-0">
+                            <%= search_field_tag :search, params[:search], placeholder: "Find note", class: "form-control" %>  
+                            <span class="input-group-addon">
+                                <i class="zmdi zmdi-search"></i>
+                            </span>
+                        <% end %> 
+                        </div>
+                    
+                    </div>
+                </div>              
+                <div class="card">
+                    <div class="header">
+                        <h2><strong>Tag</strong> Clouds</h2>                        
+                    </div>
+                    <div class="body widget tag-clouds">
+                        <ul class="list-unstyled m-b-0">
+                            <% @tags.each do |tag| %>
+                            <li><a href="#" class="tag badge badge-success"><%= tag.keyword.first(7) %></a></li>
+                            
+                            <% end %>
+                        <%= link_to "View All Tags", tags_path, class: 'btn btn-primary btn-simple' %>
+                        </ul>
+                    </div>
+                </div>
+               
+                <div class="card">
+                    <div class="header">
+                        <h2><strong>Email</strong> Newsletter <small>Get our products/news earlier than others, let’s get in touch.</small></h2>
+                    </div>
+                    <div class="body widget newsletter">                        
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Enter Email">
+                            <span class="input-group-addon">
+                                <i class="zmdi zmdi-mail-send"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

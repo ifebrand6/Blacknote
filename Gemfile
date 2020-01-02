@@ -10,24 +10,31 @@ gem 'autoprefixer-rails', '>= 5.0.0.1'
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', require: false
 gem 'bootstrap-sass', '~> 3.3'
-gem 'bootstrap_form', '~> 2.3'
+# gem 'bootstrap_form', '~> 2.3'
+gem 'bootstrap_form', '~> 4.0'
 gem 'coffee-rails', '~> 4.2'
+gem 'devise'
 gem 'dotenv-rails', '>= 2.0.0'
 gem 'font-awesome-rails'
+gem 'geocoder'
+gem 'paranoia', '~> 2.4', '>= 2.4.2'
 gem 'pg', '>= 0.18'
 gem 'pgcli-rails'
-gem 'puma', '~> 4.1'
+gem 'puma', '~> 4.3.1'
 gem 'rack-canonical-host', '~> 0.2.3'
 gem 'rails', '~> 5.2.3'
 gem 'redis', '~> 4.0'
 gem 'sass-rails', '~> 6.0'
-gem 'sidekiq', '>= 4.2.0'
+gem 'shareable'
 gem 'turbolinks', '~> 5'
-gem 'devise'
-# gem "webpacker"
+gem 'meta-tags'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+gem 'will_paginate', '~> 3.1.0' 
+gem 'friendly_id', '~> 5.2.4'
 
 group :production do
-  gem 'postmark-rails'
+  gem 'uglifier'
 end
 
 group :development, :test do

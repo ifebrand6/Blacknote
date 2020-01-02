@@ -1,0 +1,10 @@
+<%= bootstrap_form_for(@category) do |f| %>
+
+  <%= f.alert_message "Please review the problems below:" %>
+
+  <%= f.text_field :name %>
+
+  <%= f.primary %>
+  <%= link_to "Back", categories_path, class: "btn btn-link" %>
+
+<% end %>

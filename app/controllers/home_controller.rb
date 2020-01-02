@@ -2,5 +2,7 @@
 
 # Renders the home page.
 class HomeController < ApplicationController
-  def index; end
+  layout 'landing_page'
+  def index
+  end
 end
