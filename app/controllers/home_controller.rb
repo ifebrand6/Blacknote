@@ -4,6 +4,6 @@
 class HomeController < ApplicationController
   layout 'landing_page'
 
-  def
+  def home
   end
 end
