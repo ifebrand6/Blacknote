@@ -2,14 +2,8 @@
 
 class NotesController < ApplicationController
   layout 'react'
-  #before_action :get_category, except: %i[test trash state search tags]
   before_action :set_note, only: %i[show edit update destroy]
   before_action :authenticate_user!
-
-  # before_action :catergory_fill
-
-  # GET /notes
-  # try another
 
   def index
     @tags = Tag.all
@@ -25,7 +19,6 @@ class NotesController < ApplicationController
     end
   end
 
-  # GET /notes/1
   def show
     respond_to do |format|
     format.html
@@ -42,20 +35,16 @@ class NotesController < ApplicationController
   end
   end
 
-  # GET /notes/new
   def new
     @note = @category.notes.build
     @location = request.location
   end
 
-  # GET /notes/1/edit
   def edit
     @location = request.location
   end
 
-  # POST /notes
   def create
-    # @user = current_user
     @location = request.location
     @note = @category.notes.build(note_params)
     @note.set_user!(current_user)
@@ -67,7 +56,6 @@ class NotesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /notes/1
   def update
     @location = request.location
     if @note.update(note_params)
@@ -78,7 +66,6 @@ class NotesController < ApplicationController
     end
   end
 
-  # DELETE /notes/1
   def destroy
     if @note.destroy
       redirect_to category_notes_path(@category), notice: 'Note was successfully destroyed.'
@@ -90,13 +77,9 @@ class NotesController < ApplicationController
   def test; end
 
   def search
-    #@category = Category.where(id: 1)
     if params[:search].blank?
-      # this should be redirected to the notes/index
       redirect_to(root_path, alert: 'Empty field!') && return
     else
-      # @parameter = params[:search].downcase
-      # @results = Note.all.where("lower(content) LIKE :search", search: "%#{@parameter}%")
       @results = Note.joins(:category).search(params[:search])
     end
   end
@@ -116,7 +99,6 @@ class NotesController < ApplicationController
     @notes = Note.only_deleted.paginate(page: params[:page], per_page: 3)
   end
 
-  # data state- recover or destroy and object in the database
   def state
     @note = Note.unscoped.find(params[:id])
     if params[:type] == 'recover'
@@ -142,11 +124,6 @@ class NotesController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
-  # def get_category
-  #   @category = Category.where(:category_id => 1)
-  # end
-
   def set_note
     @note = @category.notes.friendly.find(params[:id])
   end
@@ -155,7 +132,6 @@ class NotesController < ApplicationController
     @location = request.location
   end
 
-  # Only allow a trusted parameter "white list" through.
   def note_params
     params.require(:note).permit(:title, :content, :category_id, :address,:slug)
   end

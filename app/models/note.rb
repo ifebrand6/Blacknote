@@ -11,14 +11,14 @@ class Note < ApplicationRecord
   has_many :labels, class_name: 'Label'
   has_many :tags, through: :labels, dependent: :destroy
   validates :content, length: { minimum: 200 }
-  # sort the note to most recent
   scope :recent, -> { order(created_at: :desc) }
   scope :most_recent, -> { order(title: DESC) }
   self.per_page = 5
-  
+
   def should_generate_new_friendly_id?
     slug.blank? || title_changed?
   end
+  
   def slug=(value)
     if value.present?
       write_attribute(:slug, value)
@@ -44,11 +44,9 @@ class Note < ApplicationRecord
   end
   def set_user!(user)
     self.user_id = user.id
-
     save
   end
 
-  # added a method to return Note:active record for exporting notes to files
   def self.all_with_category_details
     Note.select('notes.*, categories.name as category_name, categories.id as category_id').joins(:category)
   end
@@ -68,11 +66,4 @@ class Note < ApplicationRecord
     where('lower(categories.name) LIKE :search OR lower(notes.content) LIKE :search OR lower(notes.title) LIKE :search', search: "%#{search.downcase}%").uniq
   end
 
-  # added method for location finding
-  # def address
-  #     request.location.address
-  # end
-  # def get_location
-  #     @city = request.location
-  # end
 end
