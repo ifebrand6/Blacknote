@@ -9,9 +9,10 @@ class NotesController < ApplicationController
     @tags = Tag.all
     if
     params[:recent].present?
-      @notes = @category.notes.recent.paginate(page: params[:page], per_page: 2)
+      current_user
+      @notes = current_user.notes.recent.paginate(page: params[:page], per_page: 2)
     else
-      @notes = Note.all_with_category_details.paginate(page: params[:page], per_page: 3)
+      @notes = current_user.notes.all_with_category_details.paginate(page: params[:page], per_page: 3)
       respond_to do |format|
         format.html
         format.csv { send_data @notes.as_csv }
